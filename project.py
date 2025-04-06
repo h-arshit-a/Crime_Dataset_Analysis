@@ -47,6 +47,34 @@ print(df.isnull().sum())
 # Fill age nulls if any (precaution)
 df['Vict Age'] = df['Vict Age'].fillna(df['Vict Age'].median())
 
+# --- Step 4: Exploratory Data Analysis (EDA) ---
+
+# Objective 1: Crime Frequency by Year Evolution of Top 5 Crime Types Over Time
+print("\nObjective 7: Evolution of Top 5 Crime Types Over Time")
+top5_crimes = df['Crm Cd Desc'].value_counts().head(5).index
+crime_time = df[df['Crm Cd Desc'].isin(top5_crimes)].groupby(['Year', 'Crm Cd Desc']).size().unstack()
+
+plt.figure(figsize=(10, 6))
+crime_time.plot(kind='line', marker='o')
+plt.title("Top 5 Crime Types Over Years")
+plt.xlabel("Year")
+plt.ylabel("Number of Crimes")
+plt.legend(title="Crime Type")
+plt.grid(True)
+plt.show()
+print("\nObjective 1: Crime Frequency by Year and Season")
+crime_by_year = df['Year'].value_counts().sort_index()
+crime_by_season = df['Season'].value_counts()
+
+# Plot Yearly Crime
+plt.figure(figsize=(8, 5))
+crime_by_year.plot(kind='line', marker='o')
+plt.title("Crimes per Year")
+plt.xlabel("Year")
+plt.ylabel("Number of Crimes")
+plt.grid(True)
+plt.show()
+
 
 
 
