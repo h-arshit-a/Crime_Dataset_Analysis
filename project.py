@@ -74,6 +74,30 @@ plt.xlabel("Year")
 plt.ylabel("Number of Crimes")
 plt.grid(True)
 plt.show()
+# Objective 2: Crime by Hour of Day and Day of Week
+print("\nObjective 2: Crime by Hour and Day of Week")
+hourly_crime = df['Hour'].value_counts().sort_index()
+weekday_crime = df['Day_of_Week'].value_counts().reindex(
+    ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+)
+
+# Plot Crimes by Hour
+plt.figure(figsize=(10, 4))
+hourly_crime.plot(kind='bar', color='orange')
+plt.title("Crimes by Hour of Day")
+plt.xlabel("Hour")
+plt.ylabel("Crime Count")
+plt.xticks(rotation=0)
+plt.show()
+
+# Plot Crimes by Day
+plt.figure(figsize=(8, 4))
+weekday_crime.plot(kind='bar', color='purple')
+plt.title("Crimes by Day of Week")
+plt.xlabel("Day")
+plt.ylabel("Crime Count")
+plt.xticks(rotation=45)
+plt.show()
 
 
 
