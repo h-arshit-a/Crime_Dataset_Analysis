@@ -98,7 +98,37 @@ plt.xlabel("Day")
 plt.ylabel("Crime Count")
 plt.xticks(rotation=45)
 plt.show()
+# Objective 3: Area-wise and Descent-wise Crime Distribution
+print("\nObjective 3: Crime Distribution by Area and Victim Descent")
+area_crime = df['AREA NAME'].value_counts()
+descent_crime = df['Vict Descent'].value_counts()
 
+# Plot Area-wise Crimes
+plt.figure(figsize=(12, 6))
+area_crime.plot(kind='bar')
+plt.title("Crimes by Area")
+plt.ylabel("Number of Crimes")
+plt.xticks(rotation=90)
+plt.show()
+
+# Plot Descent-wise Histogram
+plt.figure(figsize=(10, 5))
+plt.hist(df['Vict Descent'], bins=len(descent_crime), edgecolor='black')
+plt.title("Histogram of Crimes by Victim Descent")
+plt.xlabel("Victim Descent")
+plt.ylabel("Frequency")
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
+
+# Objective 4: Day vs. Night Crimes
+print("\nObjective 4: Day vs. Night Crime Distribution")
+day_night_counts = df['Day_Night'].value_counts()
+plt.figure(figsize=(5, 5))
+sns.barplot(x=day_night_counts.index, y=day_night_counts.values, palette='Set2')
+plt.title("Crimes During Day vs Night")
+plt.ylabel("Crime Count")
+plt.show()
 
 
 
