@@ -1,6 +1,2 @@
- main
-hello
-hi
-
 
  main
